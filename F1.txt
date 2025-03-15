@@ -1,4 +1,5 @@
-текст текст в первой строке текст
-вот эту строка не надо тут нет одинаковых слов
-строка строка большая строка
-тоже не надo
+﻿words a lot of words
+The quick brown fox jumps over the lazy dog
+this line is not supposed to copy
+line to copy line
+Русские слова русские

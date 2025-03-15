@@ -5,9 +5,7 @@
 */
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <string>
-#include <clocale>
 #include <filesystem>
 using namespace std;
 
@@ -19,7 +17,6 @@ void vowelCount(string f);
 
 int main()
 {
-    system("chcp 1251");
     cout << "Запись в первом файле:" << endl;
     output(directory+"F1.txt");
     cout << endl;
@@ -52,6 +49,7 @@ void copy(string f1, string f2)
     ofstream fout(f2);
 
     string line;
+    bool isFirstLine=true;
     while (getline(fin, line))
     {
         bool isFirstWord = true, toCopy=false;
@@ -59,6 +57,14 @@ void copy(string f1, string f2)
         string tempWord = "";
 
         for (int i=0;i<line.length();i++) {
+            if (line[i] >= 'A' && line[i] <= 'Z') line[i]=+32;
+
+            if (isFirstLine) {
+                i+=3;
+                isFirstLine=false;
+            }
+
+            int check = line.length();
             if (line[i]==' ') {
                 isFirstWord=false;
                 tempWord="";
@@ -66,7 +72,11 @@ void copy(string f1, string f2)
             else tempWord+=line[i];
             if (isFirstWord) firstWord+=line[i];
 
-            if (i==line.length()-1) if (firstWord==tempWord) fout << line << endl;
+            if (i==line.length()-1) {
+            if (firstWord==tempWord) {
+            fout << line << endl;
+            }
+        }
         }
     }
     fin.close();
@@ -76,7 +86,7 @@ void copy(string f1, string f2)
 void vowelCount(string f)
 {
     ifstream fin(f);
-    string line, vowels="aeiouуеыаоэяиюё";
+    string line, vowels="aeiouyуеыаоэяиюё";
     int res=0;
     while (getline(fin, line))
     {
