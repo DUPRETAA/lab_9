@@ -93,7 +93,6 @@ void vowelCount(string f)
         res=0;
         for (int i=0;i<line.length();i++) {
             for (int j=0;j<vowels.length();j++) {
-                char suka=line[i], blyat=vowels[j];
             if (int(line[i])==int(vowels[j])) {
             res++;}}
         }
